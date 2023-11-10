@@ -1,5 +1,7 @@
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.tree.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -58,20 +60,79 @@ public class MiniTwitter {
 
             JTree tree = new JTree(root);
 
+            //******** Just Added for Testing ************/
+            GridBagConstraints gbc = new GridBagConstraints();
+            JPanel page = new JPanel();
+            page.setLayout(new GridBagLayout());
+            page.setBackground(new Color(229, 204, 255));
+            page.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+            gbc.insets = new Insets(5, 5, 5, 5);
 
-            // Create other components on the right half
-            JPanel rightPanel = new JPanel(new BorderLayout());
-            JPanel topPanel = new JPanel();
-            JPanel bottomPanel = new JPanel();
-            
-            topPanel.setLayout(new GridBagLayout());
-            bottomPanel.setLayout(new GridBagLayout());
-            GridBagConstraints buttonConstraints = new GridBagConstraints();
-            buttonConstraints.fill = GridBagConstraints.BOTH;
-            buttonConstraints.weightx = 1;
+            // ***** ICONS *****
+            //ImageIcon plusSign = new ImageIcon("add_FILL0_wght400_GRAD0_opsz24.png");
+            ImageIcon star = new ImageIcon("C:\\Users\\grell\\OneDrive\\Documents\\FirstGUI\\bin\\star.png");
+            Image resizedStar = star.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
+            ImageIcon finStar = new ImageIcon(resizedStar);
 
 
-            JButton userTotalButton = new JButton("Show User Total");
+            JLabel userID = new JLabel("User ID: Lemon123");
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            userID.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
+            page.add(userID, gbc);
+
+
+            JLabel groupID = new JLabel("Group ID: Buddies543");
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            groupID.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
+            page.add(groupID, gbc);
+
+
+            JButton addUserButton = new JButton("add user", finStar);
+            addUserButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    JOptionPane.showMessageDialog(null, "Adding new user...");
+                }
+            });
+            addUserButton.setContentAreaFilled(false);
+            addUserButton.setOpaque(true);
+            addUserButton.setForeground(Color.WHITE);
+            addUserButton.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+            addUserButton.setBackground(new Color(204, 153, 255));
+
+            gbc.gridx = 1;
+            gbc.gridy = 0;
+            gbc.gridwidth = 1;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            page.add(addUserButton, gbc);
+
+
+            JButton addGroupButton = new JButton("add group", finStar);
+            addGroupButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    JOptionPane.showMessageDialog(null, "Adding group...");
+                }
+            });
+
+            addGroupButton.setContentAreaFilled(false);
+            addGroupButton.setOpaque(true);
+            addGroupButton.setForeground(Color.WHITE);
+            addGroupButton.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+            addGroupButton.setBackground(new Color(204, 153, 255));
+
+            gbc.gridx = 1;
+            gbc.gridy = 1;
+            gbc.gridwidth = 1;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            page.add(addGroupButton, gbc);
+
+
+            JButton userTotalButton = new JButton("show user total", finStar);
             userTotalButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e)
@@ -80,8 +141,21 @@ public class MiniTwitter {
                 }
             });
 
+            userTotalButton.setContentAreaFilled(false);
+            userTotalButton.setOpaque(true);
+            userTotalButton.setForeground(Color.WHITE);
+            userTotalButton.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+            userTotalButton.setBackground(new Color(204, 153, 255));
+            
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.gridwidth = 1;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            page.add(userTotalButton, gbc);
 
-            JButton groupTotalButton = new JButton("Show Group Total");
+
+
+            JButton groupTotalButton = new JButton("show group total", finStar);
             groupTotalButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e)
@@ -90,8 +164,20 @@ public class MiniTwitter {
                 }
             });
 
+            groupTotalButton.setContentAreaFilled(false);
+            groupTotalButton.setOpaque(true);
+            groupTotalButton.setForeground(Color.WHITE);
+            groupTotalButton.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+            groupTotalButton.setBackground(new Color(204, 153, 255));
 
-            JButton messageTotalButton = new JButton("Show Message Total");
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            gbc.gridwidth = 1;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            page.add(groupTotalButton, gbc);
+
+
+            JButton messageTotalButton = new JButton("show message total", finStar);
             messageTotalButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e)
@@ -100,8 +186,20 @@ public class MiniTwitter {
                 }
             });
 
+            messageTotalButton.setContentAreaFilled(false);
+            messageTotalButton.setOpaque(true);
+            messageTotalButton.setForeground(Color.WHITE);
+            messageTotalButton.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+            messageTotalButton.setBackground(new Color(204, 153, 255));
 
-            JButton posPercentageButton = new JButton("Show Positive Percentage");
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            gbc.gridwidth = 1;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            page.add(messageTotalButton, gbc);
+
+
+            JButton posPercentageButton = new JButton("show positive percentage", finStar);
             posPercentageButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e)
@@ -110,44 +208,24 @@ public class MiniTwitter {
                 }
             });
 
+            posPercentageButton.setContentAreaFilled(false);
+            posPercentageButton.setOpaque(true);
+            posPercentageButton.setForeground(Color.WHITE);
+            posPercentageButton.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+            posPercentageButton.setBackground(new Color(204, 153, 255));
 
-            JButton addUserButton = new JButton("Add User");
-            posPercentageButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e)
-                {
-                    JOptionPane.showMessageDialog(null, "Adding new user...");
-                }
-            });
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            gbc.gridwidth = 1;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            page.add(posPercentageButton, gbc);
 
-
-            JButton addGroupButton = new JButton("Add Group");
-            posPercentageButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e)
-                {
-                    JOptionPane.showMessageDialog(null, "Adding group...");
-                }
-            });
-
-
-            topPanel.add(addUserButton, buttonConstraints);
-            topPanel.add(addGroupButton, buttonConstraints);
-
-
-            bottomPanel.add(userTotalButton, buttonConstraints);
-            bottomPanel.add(groupTotalButton, buttonConstraints);
-            bottomPanel.add(messageTotalButton, buttonConstraints);
-            bottomPanel.add(posPercentageButton, buttonConstraints);
-
-           
-            rightPanel.add(topPanel, BorderLayout.NORTH);
-            rightPanel.add(bottomPanel, BorderLayout.SOUTH);
-            
 
             // Create a split pane to divide the frame
-            JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(tree), rightPanel);
-            splitPane.setDividerLocation(frame.getWidth() / 2);
+            JScrollPane treePane = new JScrollPane(tree);
+            tree.setBackground(new Color(246, 195, 224));
+            JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePane, page);
+            splitPane.setDividerLocation(frame.getWidth() / 4);
 
 
             frame.add(splitPane);
