@@ -59,7 +59,7 @@ public class MiniTwitter
     //Create Add User Button
     private static JButton createAddUserButton(JTree tree, JLabel userIDLabel, JLabel groupIDLabel, DefaultListModel<String> userListModel) 
     {
-        ImageIcon star = new ImageIcon("C:\\Users\\grell\\OneDrive\\Documents\\FirstGUI\\bin\\star.png");
+        ImageIcon star = new ImageIcon("star.png");
         Image resizedStar = star.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
         ImageIcon finStar = new ImageIcon(resizedStar);
 
@@ -96,7 +96,7 @@ public class MiniTwitter
     //Create Add Group Button
     private static JButton createAddGroupButton(JTree tree, JLabel userIDLabel, JLabel groupIDLabel) 
     {
-        ImageIcon star = new ImageIcon("C:\\Users\\grell\\OneDrive\\Documents\\FirstGUI\\bin\\star.png");
+        ImageIcon star = new ImageIcon("star.png");
         Image resizedStar = star.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
         ImageIcon finStar = new ImageIcon(resizedStar);
     
@@ -158,7 +158,7 @@ public class MiniTwitter
     //Create open user view button
     private static JButton createOpenUserViewButton(JButton addUserButton, JButton addGroupButton, JLabel userID, JLabel groupID, DefaultListModel<String> userListModel)
     {
-        ImageIcon star = new ImageIcon("C:\\Users\\grell\\OneDrive\\Documents\\FirstGUI\\bin\\star.png");
+        ImageIcon star = new ImageIcon("star.png");
         Image resizedStar = star.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
         ImageIcon finStar = new ImageIcon(resizedStar);
 
@@ -321,7 +321,7 @@ public class MiniTwitter
     //create main panel of GUI
     private static JPanel createMainPanel(JTree tree, JButton addUserButton, JButton addGroupButton, JLabel userID, JLabel groupID, JButton openUserView) 
     {
-        ImageIcon star = new ImageIcon("C:\\Users\\grell\\OneDrive\\Documents\\FirstGUI\\bin\\star.png");
+        ImageIcon star = new ImageIcon("star.png");
         Image resizedStar = star.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
         ImageIcon finStar = new ImageIcon(resizedStar);
         
