@@ -14,7 +14,7 @@ public class MiniTwitter
     private Component c_root;
 
     //Counters for users, groups, positive word instances and tweets
-    private static int userCounter = 0;
+    private static int userCounter = 9;
     private static int groupCounter = 1;
     private static int tweetCounter = 0;
     private static int positiveTweetCounter = 0;
