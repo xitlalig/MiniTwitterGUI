@@ -56,6 +56,32 @@ public class MiniTwitter
     }
 
 
+    /***************** NEW ADDITION ******************/
+    private static boolean validateIDs(DefaultMutableTreeNode rootNode) {
+        Set<String> usedIDs = new HashSet<>();
+        Enumeration<TreeNode> enumeration = rootNode.depthFirstEnumeration();
+    
+        while (enumeration.hasMoreElements()) {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) enumeration.nextElement();
+            String nodeID = node.getUserObject().toString();
+    
+            // Check for duplicate IDs
+            if (usedIDs.contains(nodeID)) {
+                return false;
+            }
+    
+            // Check for IDs containing spaces
+            if (nodeID.contains(" ")) {
+                return false;
+            }
+    
+            usedIDs.add(nodeID);
+        }
+    
+        return true;
+    }
+
+
     //Create Add User Button
     private static JButton createAddUserButton(JTree tree, JLabel userIDLabel, JLabel groupIDLabel, DefaultListModel<String> userListModel) 
     {
@@ -184,6 +210,14 @@ public class MiniTwitter
                 userID.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
                 userPage.add(userID, gconstraint);
 
+                /************** NEW ADDITION **************/
+                JLabel creationTimeLabel = new JLabel("Creation Time: " + System.currentTimeMillis());
+                gconstraint.gridx = 2; // Adjust the grid position as needed
+                gconstraint.gridy = 0; // Adjust the grid position as needed
+                gconstraint.gridwidth = 1;
+                gconstraint.fill = GridBagConstraints.HORIZONTAL;
+                userPage.add(creationTimeLabel, gconstraint);
+
                 JButton followUserButton = new JButton("follow user", finStar);
                 followUserButton.addActionListener(new ActionListener() 
                 {
@@ -251,6 +285,10 @@ public class MiniTwitter
                 gconstraint.gridwidth = 3;
                 gconstraint.fill = GridBagConstraints.HORIZONTAL;
                 userPage.add(tweetScrollPane, gconstraint);
+                
+
+                JLabel tweetUpdateLabel = new JLabel();
+
 
                 JButton postTweetButton = new JButton("Post Tweet");
                 postTweetButton.addActionListener(new ActionListener() 
@@ -260,6 +298,7 @@ public class MiniTwitter
                     {
                         String tweetMessage = tweetTextArea.getText();
                         tweetListModel.addElement(tweetMessage);
+                        tweetUpdateLabel.setText("Last Update: " + System.currentTimeMillis());
 
                         if(containsPositiveWords(tweetMessage))
                         {
@@ -270,6 +309,12 @@ public class MiniTwitter
                         tweetTextArea.setText("");
                     }
                 });
+
+                gconstraint.gridx = 2; // Adjust the grid position as needed
+                gconstraint.gridy = 1; // Adjust the grid position as needed
+                gconstraint.gridwidth = 1;
+                gconstraint.fill = GridBagConstraints.HORIZONTAL;
+                userPage.add(tweetUpdateLabel, gconstraint);
 
                 postTweetButton.setContentAreaFilled(false);
                 postTweetButton.setOpaque(true);
@@ -360,6 +405,52 @@ public class MiniTwitter
         gbc.gridwidth = 3;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         page.add(openUserView, gbc);
+
+        JButton validateIDsButton = new JButton("Validate IDs");
+        validateIDsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean validIDs = validateIDs(root);
+                String validationMessage = validIDs ? "All IDs are valid." : "Some IDs are invalid.";
+                JOptionPane.showMessageDialog(null, validationMessage);
+            }
+        });
+    
+        validateIDsButton.setContentAreaFilled(false);
+        validateIDsButton.setOpaque(true);
+        validateIDsButton.setForeground(Color.WHITE);
+        validateIDsButton.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+        validateIDsButton.setBackground(new Color(204, 153, 255));
+    
+        gbc.gridx = 2; // Adjust the grid position as needed
+        gbc.gridy = 3; // Adjust the grid position as needed
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        page.add(validateIDsButton, gbc); 
+
+
+
+        JButton lastUpdatedUser = new JButton("Last Updated User");
+        lastUpdatedUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "The last Updated " + userID.getText());
+            }
+        });
+    
+        lastUpdatedUser.setContentAreaFilled(false);
+        lastUpdatedUser.setOpaque(true);
+        lastUpdatedUser.setForeground(Color.WHITE);
+        lastUpdatedUser.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+        lastUpdatedUser.setBackground(new Color(204, 153, 255));
+    
+        gbc.gridx = 2; // Adjust the grid position as needed
+        gbc.gridy = 4; // Adjust the grid position as needed
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        page.add(lastUpdatedUser, gbc); 
+
+
 
         JButton userTotalButton = new JButton("show user total", finStar);
         userTotalButton.addActionListener(new ActionListener() 
